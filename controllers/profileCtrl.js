@@ -23,31 +23,18 @@
     }
   ];
 
-  module.exports = {}
+  module.exports = {
 
         getFriends: function(req, res, next) {
           var friends = [];
           var currentUser = req.session.currentUser;
-
           for (var i = 0; i < currentUser.friends.length; i++) {
               for (var j = 0; j < profiles.length; j++) {
                   if (currentUser.friends[i] === profiles[j].name) {
-                        friends.push(profile[j]);
+                        friends.push(profiles[j]);
                   }
               }
           }
           res.json({currentUser: currentUser, friends: friends});
       }
-    }
-
-}//<-- end of exports
-// getHobbiesType: function(req, res, next) {
-//   var hobbyType = req.params.hobbyType;
-//   var filteredHobbies = user.hobbies.filter(function(value) {
-//     if (hobbyType === value.type) {
-//       return value;
-//     }
-//   })
-//   res.status(200).json(filteredHobbies)
-//   next();
-// }
+    }//<-- end of exports

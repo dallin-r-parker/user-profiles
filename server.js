@@ -5,7 +5,7 @@ var session = require('express-session')
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var config = require('./config.js');
-var profileCtrl = require('./controllers/profile.Ctrl.js');
+var profileCtrl = require('./controllers/profileCtrl.js');
 var userCtrl = require('./controllers/userCtrl.js');
 var port = 3030;
 var corsOptions = {
@@ -15,11 +15,11 @@ var corsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(session({ secret: config.sessionSecret }));
-
-
+app.use(express.static(__dirname + '/public'));
+console.log(__dirname);
 
 //============ end points
-app.post('/api/login', userCtrl.checkLogin);
+app.post('/api/login', userCtrl.login);
 app.get('/api/profiles', profileCtrl.getFriends);
 
 
